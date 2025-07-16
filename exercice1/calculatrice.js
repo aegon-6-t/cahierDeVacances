@@ -30,7 +30,7 @@ rl.question('Entrez le premier chiffre :', (answer) => {
   rl.question('Entrez le deuxième chiffre :', (answer) => {
     num2 = parseInt(answer)
 
-    console.log(num1 + num2)
+    console.log(addition(num1, num2))
     rl.close()
   })
 })

@@ -1,16 +1,12 @@
 const readline = require('readline');
 
+let num1 = 0
+let num2 = 0
+
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 })
-
-/*
-rl.question('Tape qq chose...', function(answer) {
-  console.log('Tu as tapé :', answer)
-  rl.close()
-})
-*/
 
 function addition(param1, param2) {
   return param1 + param2
@@ -28,12 +24,18 @@ function division(param1, param2) {
   return param1 / param2
 }
 
-const num1 = 6
-const num2 = 4
-console.log(addition(num1, num2))
-console.log(soustraction(num1, num2))
-console.log(multiplication(num1, num2))
-console.log(division(num1, num2))
+
+rl.question('Entrez le premier chiffre :', (answer) => {
+  num1 = parseInt(answer)
+  rl.question('Entrez le deuxième chiffre :', (answer) => {
+    num2 = parseInt(answer)
+
+    console.log(num1 + num2)
+    rl.close()
+  })
+})
+
+
 
 
 

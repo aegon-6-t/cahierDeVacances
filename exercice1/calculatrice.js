@@ -25,8 +25,11 @@ function division(param1, param2) {
 }
 
 
-rl.question('Entrez le premier chiffre :', (answer) => {
-  num1 = parseInt(answer)
+rl.question('Entrez le premier chiffre :', (userInput) => {
+  if (isNaN(parseInt(userInput)) == true) {
+    rl.setPrompt('Veuillez entrer une valeur numérique')
+    rl.prompt()
+  }
   rl.question('Entrez le deuxième chiffre :', (answer) => {
     num2 = parseInt(answer)
 

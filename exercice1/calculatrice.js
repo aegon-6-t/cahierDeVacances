@@ -25,17 +25,25 @@ function division(param1, param2) {
 }
 
 
-rl.question('Entrez le premier chiffre :', (userInput) => {
-  if (isNaN(parseInt(userInput)) == true) {
-    rl.setPrompt('Veuillez entrer une valeur numérique')
+rl.question('Entrez le premier chiffre : \n', (answer) => {
+  const num1 = parseInt(answer)
+  if (isNaN(num1) == true) {
+    rl.setPrompt('Veuillez entrer une valeur numérique \n')
     rl.prompt()
+    rl.on('line', (answer) => {
+      const num1 = parseInt(answer)
+      if(isNaN(num1)) {
+        rl.setPrompt('Veuillez entrer une valeur numérique \n')
+        rl.prompt()
+      }
+      else {
+        return num1 && rl.close()
+      }  
+    })
   }
-  rl.question('Entrez le deuxième chiffre :', (answer) => {
-    num2 = parseInt(answer)
-
-    console.log(addition(num1, num2))
-    rl.close()
-  })
+  else {
+    return num1 && rl.close()
+  }
 })
 
 

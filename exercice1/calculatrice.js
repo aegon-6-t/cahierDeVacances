@@ -24,6 +24,9 @@ function division(param1, param2) {
 }
 
 
+/*
+Je garde ça au cas ou je foire le reste
+
 rl.question('Entrez le premier chiffre : \n', (answer) => {
   const num1 = parseInt(answer)
   if (!isNaN(num1)) {
@@ -127,6 +130,37 @@ rl.question('Entrez le premier chiffre : \n', (answer) => {
     })
   }
 })
+*/
+
+function premiereQuestion() {
+  rl.question('Choisi ton opérateur: \n 1.Addition \n 2.Soustraction \n 3.Multiplication \n 4.Division \n 5.Quitter \n', (answer) => {
+    const operateur = answer
+    switch (operateur) {
+      case '1':
+        console.log("Vous avez choisi l'addition")
+        break;
+      case '2':
+        console.log("Vous avez choisi la soustraction")
+        break;
+      case '3':
+        console.log("Vous avez choisi la multiplication")
+        break;
+      case '4':
+        console.log("Vous avez choisi la division")
+        break;
+      case '5':
+        console.log("Vous avez choisi de quitter")
+        break;
+    
+      default:
+        console.log("Opérateur invalide, réessayez")
+        premiereQuestion()
+        break;
+    }
+  })
+}
+
+premiereQuestion()
 
 
 

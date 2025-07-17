@@ -32,7 +32,26 @@ rl.question('Entrez le premier chiffre : \n', (answer) => {
       if (!isNaN(num2)) {
         rl.question('Saisissez un opérateur \n', (answer) => {
           if (validOperators.includes(answer)) {
-
+            if(answer == '+') {
+              const operation = addition(num1, num2)
+              console.log(`${num1} + ${num2} = ${operation}`)
+              rl.close()
+            }
+            else if(answer == '-') {
+              const operation = soustraction(num1, num2)
+              console.log(`${num1} - ${num2} = ${operation}`)
+              rl.close()
+            }
+            else if(answer == '*') {
+              const operation = multiplication(num1, num2)
+              console.log(`${num1} * ${num2} = ${operation}`)
+              rl.close()
+            }
+            else if(answer == '/') {
+              const operation = division(num1, num2)
+              console.log(`${num1} / ${num2} = ${operation}`)
+              rl.close()
+            }
           }else {
             rl.setPrompt('L\'opérateur saisi n\'est pas correct, réessayez \n')
             rl.prompt()

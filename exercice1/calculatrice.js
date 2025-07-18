@@ -132,24 +132,35 @@ rl.question('Entrez le premier chiffre : \n', (answer) => {
 })
 */
 
+let operateur = ""
+
+
+
 function premiereQuestion() {
   rl.question('Choisi ton opérateur: \n 1.Addition \n 2.Soustraction \n 3.Multiplication \n 4.Division \n 5.Quitter \n', (answer) => {
-    const operateur = answer
-    switch (operateur) {
+    const choix = answer
+    switch (choix) {
       case '1':
         console.log("Vous avez choisi l'addition")
-        break;
+        operateur = "+"
+        premierNombre()
+        break; 
       case '2':
         console.log("Vous avez choisi la soustraction")
+        operateur = "-"
+        premiereQuestion()
         break;
       case '3':
         console.log("Vous avez choisi la multiplication")
+        operateur = "*"
         break;
       case '4':
         console.log("Vous avez choisi la division")
+        operateur = "/";
         break;
       case '5':
         console.log("Vous avez choisi de quitter")
+        rl.close();
         break;
     
       default:
@@ -158,9 +169,51 @@ function premiereQuestion() {
         break;
     }
   })
+  return operateur
+}
+
+function premierNombre() {
+  rl.question('Entrez le premier nombre : \n', (answer) => {
+    const num1 = parseInt(answer)
+    if (!isNaN(num1)) {
+      deuxiemeNombre()
+      return num1
+    }else {
+      rl.setPrompt('Veuillez entrer une valeur numérique \n')
+      rl.prompt()
+      rl.on('line', (answer) => {
+        const num1 = parseInt(answer)
+        if(isNaN(num1)) {
+          rl.setPrompt('Veuillez entrer une valeur numérique \n')
+          rl.prompt()
+        }  
+      })
+    }
+  })
+}
+
+function deuxiemeNombre() {
+  rl.question('Entrez le deuxième nombre : \n', (answer) => {
+    const num2 = parseInt(answer)
+    if (!isNaN(num2)) {
+      return num2
+    }else {
+      rl.setPrompt('Veuillez entrer une valeur numérique \n')
+      rl.prompt()
+      rl.on('line', (answer) => {
+        const num2 = parseInt(answer)
+        if(isNaN(num2)) {
+          rl.setPrompt('Veuillez entrer une valeur numérique \n')
+          rl.prompt()
+        }  
+      })
+    }
+  })
 }
 
 premiereQuestion()
+
+
 
 
 

@@ -134,8 +134,6 @@ rl.question('Entrez le premier chiffre : \n', (answer) => {
 
 let operateur = ""
 
-
-
 function premiereQuestion() {
   rl.question('Choisi ton opérateur: \n 1.Addition \n 2.Soustraction \n 3.Multiplication \n 4.Division \n 5.Quitter \n', (answer) => {
     const choix = answer
@@ -148,15 +146,17 @@ function premiereQuestion() {
       case '2':
         console.log("Vous avez choisi la soustraction")
         operateur = "-"
-        premiereQuestion()
+        premierNombre()
         break;
       case '3':
         console.log("Vous avez choisi la multiplication")
         operateur = "*"
+        premierNombre()
         break;
       case '4':
         console.log("Vous avez choisi la division")
         operateur = "/";
+        premierNombre()
         break;
       case '5':
         console.log("Vous avez choisi de quitter")
@@ -188,6 +188,8 @@ function premierNombre() {
         if(isNaN(num1)) {
           rl.setPrompt('Veuillez entrer une valeur numérique \n')
           rl.prompt()
+        }else {
+          return num1 && deuxiemeNombre()
         }  
       })
     }
@@ -208,7 +210,9 @@ function deuxiemeNombre() {
         if(isNaN(num2)) {
           rl.setPrompt('Veuillez entrer une valeur numérique \n')
           rl.prompt()
-        }  
+        }else {
+          return num2 && calcul(num1, num2, operateur)
+        }
       })
     }
   })
@@ -230,10 +234,8 @@ function calcul(param1, param2, param3) {
     case "/":
       resultat = division(param1, param2)
       break;
-  
-    default:
-      break;
   }
+  return resultat && rl.close
 }
 
 premiereQuestion()

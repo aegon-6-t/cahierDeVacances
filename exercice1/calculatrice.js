@@ -172,6 +172,8 @@ function premiereQuestion() {
   return operateur
 }
 
+let num1 = 0
+
 function premierNombre() {
   rl.question('Entrez le premier nombre : \n', (answer) => {
     const num1 = parseInt(answer)
@@ -196,6 +198,7 @@ function deuxiemeNombre() {
   rl.question('Entrez le deuxième nombre : \n', (answer) => {
     const num2 = parseInt(answer)
     if (!isNaN(num2)) {
+      calcul(num1, num2, operateur)
       return num2
     }else {
       rl.setPrompt('Veuillez entrer une valeur numérique \n')
@@ -209,6 +212,28 @@ function deuxiemeNombre() {
       })
     }
   })
+}
+
+let resultat = 0
+
+function calcul(param1, param2, param3) {
+  switch (param3) {
+    case "+":
+      resultat = addition(param1, param2)
+      break;
+    case "-":
+      resultat = soustraction(param1, param2)
+      break;
+    case "*":
+      resultat = multiplication(param1, param2)
+      break;
+    case "/":
+      resultat = division(param1, param2)
+      break;
+  
+    default:
+      break;
+  }
 }
 
 premiereQuestion()

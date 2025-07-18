@@ -176,7 +176,10 @@ let num1 = 0
 
 function premierNombre() {
   rl.question('Entrez le premier nombre : \n', (answer) => {
+    console.log(`l'operateur est ${operateur}`)
+    console.log(answer)
     const num1 = parseInt(answer)
+    console.log(num1)
     if (!isNaN(num1)) {
       deuxiemeNombre()
       return num1
@@ -198,6 +201,7 @@ function premierNombre() {
 
 function deuxiemeNombre() {
   rl.question('Entrez le deuxième nombre : \n', (answer) => {
+    console.log(`le premier nombre est ${num1}`)
     const num2 = parseInt(answer)
     if (!isNaN(num2)) {
       calcul(num1, num2, operateur)

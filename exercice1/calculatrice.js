@@ -172,22 +172,18 @@ function premiereQuestion() {
   return operateur
 }
 
-let num1 = 0
+let num1 =0
 
 function premierNombre() {
   rl.question('Entrez le premier nombre : \n', (answer) => {
-    console.log(`l'operateur est ${operateur}`)
-    console.log(answer)
-    const num1 = parseInt(answer)
-    console.log(num1)
+    num1 = parseInt(answer)
     if (!isNaN(num1)) {
-      deuxiemeNombre()
-      return num1
+      return num1 && deuxiemeNombre()
     }else {
       rl.setPrompt('Veuillez entrer une valeur numérique \n')
       rl.prompt()
       rl.on('line', (answer) => {
-        const num1 = parseInt(answer)
+        num1 = parseInt(answer)
         if(isNaN(num1)) {
           rl.setPrompt('Veuillez entrer une valeur numérique \n')
           rl.prompt()
@@ -199,18 +195,18 @@ function premierNombre() {
   })
 }
 
+let num2 = 0
+
 function deuxiemeNombre() {
   rl.question('Entrez le deuxième nombre : \n', (answer) => {
-    console.log(`le premier nombre est ${num1}`)
-    const num2 = parseInt(answer)
+    num2 = parseInt(answer)
     if (!isNaN(num2)) {
-      calcul(num1, num2, operateur)
-      return num2
+      return num2 && calcul(num1, num2, operateur)
     }else {
       rl.setPrompt('Veuillez entrer une valeur numérique \n')
       rl.prompt()
       rl.on('line', (answer) => {
-        const num2 = parseInt(answer)
+        num2 = parseInt(answer)
         if(isNaN(num2)) {
           rl.setPrompt('Veuillez entrer une valeur numérique \n')
           rl.prompt()
@@ -239,10 +235,14 @@ function calcul(param1, param2, param3) {
       resultat = division(param1, param2)
       break;
   }
-  return resultat && rl.close
+  return resultat && rl.close()
 }
 
 premiereQuestion()
+
+rl.on('close', () => {
+  console.log(`le resultat est ${resultat}`)
+})
 
 
 

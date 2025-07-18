@@ -205,7 +205,7 @@ function deuxiemeNombre() {
       console.log("Vous ne pouvez pas diviser par zéro, veuillez entrer un autre nombre")
       deuxiemeNombre()
     } else {
-      return num2 && calcul(num1, num2, operateur)
+      return num2 && calcul(num1, num2, operateur) && rl.close()
     }
   })
 }
@@ -231,8 +231,8 @@ function calcul(param1, param2, param3) {
       resultat = division(num1, num2)
       break;
   }
-  console.log(`Le resultat est ${resultat}`)
-  rl.close()
+  console.log(`Le resultat est ${resultat} \n`)
+  calculatrice()
 }
 
 calculatrice()

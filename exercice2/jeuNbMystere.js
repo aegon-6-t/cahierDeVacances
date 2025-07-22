@@ -20,7 +20,7 @@ function genererNombreMystere() {
 let reponse = 0
 
 function demanderDifficulte() {
-  rl.question('Bienvenue dans le jeu du nombre mystère !\n Choisissez la difficulté\n', (answer) => {
+  rl.question('Bienvenue dans le jeu du nombre mystère !\nChoisissez la difficulté\n', (answer) => {
     if (answer === "facile") niveau = answer
     else if (answer === "moyen") niveau = answer
     else if (answer === "difficile") niveau = answer
@@ -42,6 +42,7 @@ function jouer() {
     }
     if(tentative === reponse) {
       console.log("Félicitation !")
+      return rejouer()
     }
     else if (tentative > reponse) {
       console.log("Trop grand ! Réessayez")
@@ -52,6 +53,22 @@ function jouer() {
       return jouer()
     }
   })
+}
+
+function rejouer() {
+  rl.question("Voulez-vous faire une nouvelle partie ?\nRépondez 'o' pour 'oui' ou 'n' pour 'non'.\n", (answer) => {
+    if(answer === 'o' || answer === 'oui') {
+      return demanderDifficulte()
+    }
+    else {
+      console.log('A bientôt !')
+      return rl.close()
+    }
+  })
+}
+
+function creerSauvegarde() {
+
 }
 
 let data = {

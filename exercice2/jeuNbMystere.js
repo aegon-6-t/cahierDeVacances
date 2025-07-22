@@ -1,4 +1,5 @@
 const readline = require('readline');
+const fs = require('fs');
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -52,5 +53,15 @@ function jouer() {
     }
   })
 }
+
+let data = {
+  date: 2025,
+  tentatives: 8,
+}
+
+const jsonData = JSON.stringify(data)
+
+fs.writeFileSync('score.json', jsonData);
+
 
 demanderDifficulte()

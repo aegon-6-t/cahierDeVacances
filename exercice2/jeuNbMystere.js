@@ -32,24 +32,31 @@ function demanderDifficulte() {
 
 let tentative = 0
 
+let nbTentatives = 0
+
 function jouer() {
   console.log(reponse)
   rl.question('A quel nombre tu penses ? \n', (answer) => {
     tentative = parseInt(answer)
     if(isNaN(tentative)) {
       console.log("Veuillez entrer une valeur numérique !")
+      nbTentatives += 1
       return jouer()
     }
     if(tentative === reponse) {
       console.log("Félicitation !")
+      nbTentatives += 1
+      creerSauvegarde()
       return rejouer()
     }
     else if (tentative > reponse) {
       console.log("Trop grand ! Réessayez")
+      nbTentatives += 1
       return jouer()
     }
     else if (tentative <= reponse) {
       console.log("Trop petit ! Réessayez")
+      nbTentatives += 1
       return jouer()
     }
   })
@@ -67,18 +74,17 @@ function rejouer() {
   })
 }
 
+console.log(Date())
+
 function creerSauvegarde() {
-
+  let data = {
+    date: Date(),
+    tentatives: nbTentatives,
+    nombreMystere: reponse,
+  }
+  const jsonData = JSON.stringify(data)
+  fs.writeFileSync('score.json', jsonData)
+  console.log("Partie sauvegardée dans score.json")
 }
-
-let data = {
-  date: 2025,
-  tentatives: 8,
-}
-
-const jsonData = JSON.stringify(data)
-
-fs.writeFileSync('score.json', jsonData);
-
 
 demanderDifficulte()
